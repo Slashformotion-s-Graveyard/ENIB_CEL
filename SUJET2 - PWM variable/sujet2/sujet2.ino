@@ -1,12 +1,12 @@
 
+
 const int I1 = 2, I2 = 3, L = 10, S = 11; // interrupteurs 1 et 22, led, sortie
 bool v1, v2;
 int x;
-int periode_ms;
+int period;
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
   pinMode(I1, INPUT);
   pinMode(I2, INPUT);
   pinMode(L, OUTPUT);
@@ -20,21 +20,21 @@ void loop()
   // acquisition des données
   v1 = bool(digitalRead(I1));
   v2 = bool(digitalRead(I2));
-  Serial.print(v1);
-  Serial.print("   ");
-  Serial.println(v2);
+  
 
   // logique
-  if (v1 == false)
+  if (v1)
   {
     digitalWrite(L, HIGH); // on allume la LED
     digitalWrite(S, HIGH); // on allume la sortie
 
-    delayMicroseconds(50 / 2);
+    
+    delayMicroseconds(25);
 
     digitalWrite(S, LOW); // on éteint la sortie
 
-    delayMicroseconds(50 / 2);
+    delayMicroseconds(25);
+    
   }
   else
   {
@@ -45,31 +45,33 @@ void loop()
     }
     else
     {
-      digitalWrite(L, LOW);
+      digitalWrite(L, LOW); 
     }
 
     // acquisition de la valeur variable du potentiomêtre
-    x = map(analogRead(A0), 0, 1023, 100, 500);
-    periode_ms = (1 / x) * 1000000;
-    if (v2 == false)
+    period = map(analogRead(A0), 0, 1023, 2, 10) * 1000;
+
+    Serial.print("   ");
+    Serial.println(x);
+    if (v2)
     {
       digitalWrite(S, HIGH);
 
-      delayMicroseconds(periode_ms / 4);
+      delayMicroseconds(period * 0.25);
 
       digitalWrite(S, LOW);
 
-      delayMicroseconds(periode_ms * (3 / 4));
+      delayMicroseconds(period * 0.75);
     }
     else
     {
       digitalWrite(S, HIGH);
 
-      delayMicroseconds(periode_ms * (3 / 4));
+      delayMicroseconds(period * 0.75);
 
       digitalWrite(S, LOW);
 
-      delayMicroseconds(periode_ms / 4);
+      delayMicroseconds(period * 0.25);
     }
   }
 }
