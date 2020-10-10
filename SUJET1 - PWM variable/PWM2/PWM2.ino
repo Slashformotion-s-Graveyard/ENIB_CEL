@@ -1,5 +1,4 @@
-
-   #define PIN_D_I1  2 
+#define PIN_D_I1  2 
 #define PIN_D_I2  3
 #define PIN_D_LED  9 
 #define PIN_D_OUT  211

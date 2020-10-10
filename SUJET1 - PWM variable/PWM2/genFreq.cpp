@@ -1,4 +1,4 @@
-#include "genLowFreq.hpp"
+#include "genLowFreq.h"
 
 namespace Tools
 {
@@ -34,8 +34,11 @@ namespace Tools
 
                 return true;
             }
+            else{
+                return false;
+            }
 
-            return false;
+            
         }
 
         void FrequencyGenerator::setEnable(bool enable)
