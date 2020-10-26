@@ -1,9 +1,9 @@
 #include "digitalWriteFast.h"
-#define I1 2
-#define I2 3
-#define L 10
-#define S 11
-#define PIN_A_POTAR A0
+#define I1 (2)
+#define I2 (3)
+#define L (10)
+#define S (11)
+#define PIN_A_POTAR (A0)
 
 bool v1, v2;
 bool s, last_s, led, last_led;
@@ -58,6 +58,11 @@ void loop()
             s_10_timer = 0;
             s_11_timer = 0;
             led_timer = 0;
+        }
+        
+        if (led_timer >= 500000) {
+            led = !led;
+            
         }
 
         if (!v2)
