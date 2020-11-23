@@ -40,7 +40,7 @@ void loop()
     Serial.println(s_11_timer);
     last_s = s;
     last_led = led;
-    led_timer = led_timer + curTime - lastTime;
+    
 
     if (!v1)
     {
