@@ -71,6 +71,7 @@ void loop()
         period = int((analogRead(PIN_A_POTAR) / 1023) * 8000 + 2000);
         led_timer = led_timer + curTime - lastTime;
 
+        
         if (front_montant_v2)
         {
             s_10_timer = 0;
