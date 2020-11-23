@@ -65,7 +65,7 @@ void loop()
         front_montant_v1 = true;
         v2 = digitalReadFast(I2);
         Serial.print("Etat de I2 (sur la broche 3) = ");
-        (s_11_timer);
+        Serial.println(v2);
         period = int((analogRead(PIN_A_POTAR) / 1023) * 8000 + 2000);
 
         if (front_montant_v2)
@@ -78,6 +78,7 @@ void loop()
         if (led_timer >= 500000)
         {
             led = !led;
+            led_timer=0;
         }
 
         if (!v2)
@@ -85,10 +86,12 @@ void loop()
             if (s && s_10_timer >= int(period * 0.25))
             {
                 s = false;
+                s_10_timer = 0;
             }
             else if (!s && s_10_timer >= int(period * 0.75))
             {
                 s = true;
+                s_10_timer = 0;
             }
             s_10_timer = s_10_timer + curTime - lastTime;
         }
@@ -97,10 +100,12 @@ void loop()
             if (s && s_11_timer >= int(period * 0.75))
             {
                 s = false;
+                s_11_timer = 0;
             }
             else if (!s && s_11_timer >= int(period * 0.25))
             {
                 s = true;
+                s_11_timer = 0;
             }
             s_11_timer = s_11_timer + curTime - lastTime;
         }
