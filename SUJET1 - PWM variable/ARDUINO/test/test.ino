@@ -19,7 +19,7 @@ void setup()
     pinModeFast(L, OUTPUT);
     pinModeFast(I1, INPUT);
     pinModeFast(I2, INPUT);
-    Serial.begin();
+    Serial.begin(11520);
 }
 
 void loop()
