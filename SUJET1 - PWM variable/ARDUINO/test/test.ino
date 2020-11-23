@@ -40,13 +40,15 @@ void loop()
     Serial.println(s_11_timer);
     last_s = s;
     last_led = led;
+    led_timer = led_timer + curTime - lastTime;
 
     if (!v1)
     {
 
         front_montant_v2 = true;
+        
         if (front_montant_v1)
-        {
+        {   
             led = true;
             s_00_01_timer = 0;
         }
@@ -67,6 +69,7 @@ void loop()
         Serial.print("Etat de I2 (sur la broche 3) = ");
         Serial.println(v2);
         period = int((analogRead(PIN_A_POTAR) / 1023) * 8000 + 2000);
+        led_timer = led_timer + curTime - lastTime;
 
         if (front_montant_v2)
         {
